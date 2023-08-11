@@ -4,7 +4,8 @@ import 'package:plantpal/screens/signupScreen.dart';
 import '../main.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,26 +18,32 @@ class LoginScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
+            // Top section: App title
             Expanded(
               child: Center(
                 child: TextButton(
                   onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const StartUpScreen()));
+                    // Navigate back to the startup screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const StartUpScreen(),
+                      ),
+                    );
                   },
                   child: const Text(
                     "PlantPal",
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 80,
-                        fontFamily: "Cursive",
-                        fontWeight: FontWeight.w700),
+                      color: Colors.white,
+                      fontSize: 80,
+                      fontFamily: "Cursive",
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ),
             ),
+            // Bottom section: Login form
             Container(
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(1),
@@ -57,7 +64,7 @@ class LoginScreen extends StatelessWidget {
 }
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+  const LoginForm({Key? key});
 
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -89,6 +96,7 @@ class _LoginFormState extends State<LoginForm> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            // Login form fields
             const Center(
               child: Text(
                 "Login",
@@ -123,6 +131,7 @@ class _LoginFormState extends State<LoginForm> {
               },
             ),
             const SizedBox(height: 20),
+            // Login button
             ElevatedButton(
               onPressed: _submitForm,
               child: const Padding(
@@ -132,14 +141,19 @@ class _LoginFormState extends State<LoginForm> {
                 ),
               ),
             ),
+            // "Sign Up" button
             TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SignupScreen()));
-                },
-                child: const Text("Dont have an account? Sign Up"))
+              onPressed: () {
+                // Navigate to the signup screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SignupScreen(),
+                  ),
+                );
+              },
+              child: const Text("Don't have an account? Sign Up"),
+            ),
           ],
         ),
       ),
