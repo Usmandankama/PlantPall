@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plantpal/screens/signupScreen.dart';
 
 import '../main.dart';
+import 'home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -85,6 +86,7 @@ class _LoginFormState extends State<LoginForm> {
     }
   }
 
+  String dropdownvalue = "Admin";
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -97,10 +99,41 @@ class _LoginFormState extends State<LoginForm> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             // Login form fields
-            const Center(
-              child: Text(
-                "Login",
-                style: TextStyle(fontSize: 30, fontFamily: "Monospace"),
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const Text(
+                    "Login",
+                    style: TextStyle(fontSize: 20, fontFamily: "Monospace"),
+                  ),
+                  DropdownButton(
+                    value: dropdownvalue,
+                    items: const [
+                      DropdownMenuItem(
+                        value: "Admin",
+                        child: Text(
+                          "Admin",
+                          style:
+                              TextStyle(fontSize: 20, fontFamily: "Monospace"),
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: "User",
+                        child: Text(
+                          "User",
+                          style:
+                              TextStyle(fontSize: 20, fontFamily: "Monospace"),
+                        ),
+                      ),
+                    ],
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownvalue = newValue!;
+                      });
+                    },
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 5),
@@ -133,7 +166,16 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(height: 20),
             // Login button
             ElevatedButton(
-              onPressed: _submitForm,
+              onPressed: () {
+                setState(() {
+                  if (dropdownvalue == "User") {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()));
+                  }
+                });
+              },
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 child: Text(
@@ -144,13 +186,15 @@ class _LoginFormState extends State<LoginForm> {
             // "Sign Up" button
             TextButton(
               onPressed: () {
+                setState(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SignupScreen(),
+                    ),
+                  );
+                });
                 // Navigate to the signup screen
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SignupScreen(),
-                  ),
-                );
               },
               child: const Text("Don't have an account? Sign Up"),
             ),
