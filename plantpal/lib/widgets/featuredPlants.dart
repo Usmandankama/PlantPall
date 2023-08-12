@@ -73,7 +73,7 @@ class _featuredState extends State<featured> {
                       Container(
                         height: 120.0,
                         decoration: BoxDecoration(
-                          image: DecorationImage(
+                          image: DecorationImage(alignment: Alignment.center,
                             image: AssetImage(plant.imagePath),
                             fit: BoxFit.cover,
                           ),
