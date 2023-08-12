@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plantpal/constants.dart';
 
 // Import the other screens used in the app
 import 'screens/SignupScreen.dart';
@@ -18,7 +19,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Plant Shop',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primaryColor: primaryColor,
+        buttonTheme: const ButtonThemeData(
+          buttonColor: primaryColor,
+        ),
+        // title: IconButton(icon: Icons.shopping_cart,onPressed:(){},),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // Specify the startup screen as the home screen of the app

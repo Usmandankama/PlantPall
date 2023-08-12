@@ -1,295 +1,165 @@
 import 'package:flutter/material.dart';
+import '../constants.dart'; // Import constants for styling
+import '../widgets/featuredPlants.dart'; // Import the featured plants widget
+import '../widgets/plantcategories.dart'; // Import the plant categories widget
+import 'package:google_nav_bar/google_nav_bar.dart';
+
+import 'SignupScreen.dart';
+import 'login_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const HomeScreen()); // Entry point of the application
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _index = 0;
+
+  final screens = [
+    const HomePage(),
+    const LoginScreen(),
+    const SignupScreen()
+    // Cartegories(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false, // Hide the debug banner
       title: 'Plant Shop',
       theme: ThemeData(
-        primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const HomePage(),
+      home: Scaffold(
+        extendBodyBehindAppBar: true, // Extend body behind the app bar
+        body: screens[_index],
+        bottomNavigationBar: Container(
+          color: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          child: GNav(
+            gap: 8,
+            backgroundColor: Colors.transparent,
+            padding: const EdgeInsets.symmetric(horizontal:16,vertical: 10),
+            activeColor: const Color.fromARGB(255, 0, 0, 0),
+            tabBackgroundColor: const Color.fromARGB(150, 199, 199, 199),
+            tabs: const [
+              GButton(
+                icon: Icons.storefront,
+                text: "Home",
+              ),
+              GButton(
+                icon: Icons.category_outlined,
+                text: "Cartegories",
+              ),
+              GButton(
+                icon: Icons.favorite_border_rounded,
+                text: "Favourite",
+              ),
+              GButton(
+                icon: Icons.shopping_cart_outlined,
+                text: "Cart",
+              ),
+            ],
+            selectedIndex: _index,
+            onTabChange: (value) {
+              setState(() {
+                _index = value;
+              });
+            },
+          ),
+        ),
+      ),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Plant Shop'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: () {
-              // Handle cart button press
-            },
-          ),
-        ],
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _buildHeader(),
-            _buildFeaturedPlants(context),
-            _buildPlantCategories(context),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      decoration: const BoxDecoration(
-        color: Colors.green,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(30.0),
-          bottomRight: Radius.circular(30.0),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Welcome to Plant Shop',
-            style: TextStyle(
-              fontSize: 24.0,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 10.0),
-          const Text(
-            'Find the perfect plants for your home',
-            style: TextStyle(
-              fontSize: 16.0,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 20.0),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            child: TextFormField(
-              decoration: const InputDecoration(
-                hintText: 'Search for plants',
-                prefixIcon: Icon(Icons.search),
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.all(16.0),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildFeaturedPlants(BuildContext context) {
-    // Implement the featured plant section
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Featured Plants',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          // Implement the featured plant items
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 16.0,
-              mainAxisSpacing: 16.0,
-              childAspectRatio: 0.8,
-            ),
-            itemCount: featuredPlants.length,
-            itemBuilder: (context, index) {
-              final plant = featuredPlants[index];
-              return _buildFeaturedPlantItem(context, plant);
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildFeaturedPlantItem(BuildContext context, Plant plant) {
-    // Implement a widget representing a featured plant item
-    return Card(
-      elevation: 4.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-      child: InkWell(
-        onTap: () {
-          // Navigate to the plant details screen
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => PlantDetailsScreen(plant: plant),
-          //   ),
-          // );
-        },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Featured plant image
+            // The top section with the app title, search, and featured plants
             Container(
-              height: 120.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(plant.imagePath),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(16.0),
-                  topRight: Radius.circular(16.0),
+              padding: const EdgeInsets.only(
+                  top: 50, bottom: 16, left: 16, right: 16),
+              decoration: const BoxDecoration(
+                color: primaryColor, // Use the primary background color
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30.0),
+                  bottomRight: Radius.circular(30.0),
                 ),
               ),
-            ),
-            // Plant name
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                plant.name,
-                style: const TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                ),
+              child: Column(
+                children: [
+                  // App title
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Text(
+                      "PlantPal",
+                      style: TextStyle(
+                        color: Colors.white, // Use white text color
+                        fontSize: 80,
+                        fontFamily: "Cursive",
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10.0),
+                  // App slogan
+                  const Center(
+                    child: Text(
+                      'Find the perfect plants for your home',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.white, // Use white text color
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20.0),
+                  // Search input field
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors
+                          .white, // Use white background for the search box
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        hintText: 'Search for plants',
+                        prefixIcon: Icon(Icons.search),
+                        border: InputBorder.none, // Hide the input border
+                        contentPadding: EdgeInsets.all(16.0),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPlantCategories(BuildContext context) {
-    // Implement the plant categories section
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Plant Categories',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
+            // Featured plants section
+            const featured(),
+            const SizedBox(
+              height: 20,
             ),
-          ),
-          // Implement the plant category items
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, // You can adjust the number of columns
-              crossAxisSpacing: 16.0,
-              mainAxisSpacing: 16.0,
-            ),
-            itemCount: plantCategories.length,
-            itemBuilder: (context, index) {
-              final category = plantCategories[index];
-              return _buildPlantCategoryItem(context, category);
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPlantCategoryItem(BuildContext context, PlantCategory category) {
-    // Implement a widget representing a plant category item
-    return Card(
-      elevation: 4.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-      child: InkWell(
-        onTap: () {
-          // Navigate to the plant category details screen
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => PlantCategoryScreen(category: category),
-          //   ),
-          // );
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Plant category icon
-            Icon(
-              category.icon,
-              size: 40.0,
-              color: Colors.green,
-            ),
-            const SizedBox(height: 8.0),
-            // Plant category name
-            Text(
-              category.name,
-              style: const TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            // Plant categories section
+            const plantCategories(),
           ],
         ),
       ),
     );
   }
 }
-
-// Data model for a plant
-class Plant {
-  final String name;
-  final String imagePath;
-
-  Plant({required this.name, required this.imagePath});
-}
-
-// Data model for a plant category
-class PlantCategory {
-  final String name;
-  final IconData icon;
-
-  PlantCategory({required this.name, required this.icon});
-}
-
-// Placeholder data for featured plants
-List<Plant> featuredPlants = [
-  Plant(name: 'Monstera Deliciosa', imagePath: './assets/images/HermanoGato.png'),
-  Plant(name: 'Peace Lily', imagePath: './assets/images/montera.jpg'),
-  Plant(name: 'Fiddle Leaf Fig', imagePath: './assets/images/Strelizia.jpg'),
-  Plant(name: 'Snake Plant', imagePath: './assets/images/potted.jpg'),
-];
-
-// Placeholder data for plant categories
-List<PlantCategory> plantCategories = [
-  PlantCategory(name: 'Indoor Plants', icon: Icons.local_florist),
-  PlantCategory(name: 'Outdoor Plants', icon: Icons.eco),
-  PlantCategory(name: 'Cactus', icon: Icons.eco_outlined),
-  PlantCategory(name: 'Succulents', icon: Icons.grass),
-  PlantCategory(name: 'Bonsai', icon: Icons.nature),
-  PlantCategory(name: 'Herbs', icon: Icons.local_dining),
-];
