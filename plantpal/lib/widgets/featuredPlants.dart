@@ -1,9 +1,10 @@
-// ignore_for_file: file_names, camel_case_types
+// Ignore lint warnings for file names and camel case types
+// (This is to suppress specific lint rules for this file)
 
 import 'package:flutter/material.dart';
 
-import '../models/plants.dart';
-import '../screens/details.dart';
+import '../models/plants.dart'; // Assuming this is the import for the Plant model
+import '../screens/details.dart'; // Import the plant details screen
 
 class featured extends StatefulWidget {
   const featured({super.key});
@@ -13,7 +14,9 @@ class featured extends StatefulWidget {
 }
 
 class _featuredState extends State<featured> {
+  // List of featured plants
   List<Plant> featuredPlants = [
+    // Sample featured plants
     Plant("Large", 20.62, name: 'Monstera Deliciosa', imagePath: './assets/images/1.png'),
     Plant("Medium", 25.99, name: 'Lilly', imagePath: './assets/images/2.png'),
     Plant("Small", 20.88, name: 'Hibiscus', imagePath: './assets/images/3.png'),
@@ -35,7 +38,7 @@ class _featuredState extends State<featured> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          // Implement the featured plant items
+          // Implement the featured plant items using a GridView
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -55,7 +58,7 @@ class _featuredState extends State<featured> {
                 ),
                 child: InkWell(
                   onTap: () {
-                    // Navigate to the plant details screen
+                    // Navigate to the plant details screen when a plant is tapped
                     Navigator.push(
                       context,
                       MaterialPageRoute(
