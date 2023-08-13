@@ -5,7 +5,9 @@ import '../widgets/plantcategories.dart'; // Import the plant categories widget
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 import 'SignupScreen.dart';
+import 'cart.dart';
 import 'login_page.dart';
+import 'products.dart';
 
 void main() {
   runApp(const HomeScreen()); // Entry point of the application
@@ -23,9 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final screens = [
     const HomePage(),
-    const LoginScreen(),
-    const SignupScreen()
-    // Cartegories(),
+    const Products(),
+    const SignupScreen(),
+    EcommerceCartApp()
   ];
 
   @override
@@ -45,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: GNav(
             gap: 8,
             backgroundColor: Colors.transparent,
-            padding: const EdgeInsets.symmetric(horizontal:16,vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             activeColor: const Color.fromARGB(255, 0, 0, 0),
             tabBackgroundColor: const Color.fromARGB(150, 199, 199, 199),
             tabs: const [
@@ -54,12 +56,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "Home",
               ),
               GButton(
-                icon: Icons.category_outlined,
-                text: "Cartegories",
+                icon: Icons.inventory_2_outlined,
+                text: "Products",
               ),
               GButton(
-                icon: Icons.favorite_border_rounded,
-                text: "Favourite",
+                icon: Icons.category_outlined,
+                text: "Cartegories",
               ),
               GButton(
                 icon: Icons.shopping_cart_outlined,
@@ -151,12 +153,12 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             // Featured plants section
-            const featured(),
-            const SizedBox(
-              height: 20,
-            ),
             // Plant categories section
             const plantCategories(),
+                        const SizedBox(
+              height: 20,
+            ),
+            const featured()
           ],
         ),
       ),

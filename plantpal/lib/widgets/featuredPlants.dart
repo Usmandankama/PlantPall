@@ -1,6 +1,8 @@
 // Ignore lint warnings for file names and camel case types
 // (This is to suppress specific lint rules for this file)
 
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 
 import '../models/plants.dart'; // Assuming this is the import for the Plant model
@@ -26,82 +28,84 @@ class _featuredState extends State<featured> {
   @override
   Widget build(BuildContext context) {
     // Implement the featured plant section
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Featured Plants',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          // Implement the featured plant items using a GridView
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 16.0,
-              mainAxisSpacing: 16.0,
-              childAspectRatio: 0.8,
-            ),
-            itemCount: featuredPlants.length,
-            itemBuilder: (context, index) {
-              final plant = featuredPlants[index];
-              return Card(
-                elevation: 4.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0),
+    return SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Featured Plants',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
                 ),
-                child: InkWell(
-                  onTap: () {
-                    // Navigate to the plant details screen when a plant is tapped
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Details(plant: plant),
-                      ),
-                    );
-                  },
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Featured plant image
-                      Container(
-                        height: 120.0,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(alignment: Alignment.center,
-                            image: AssetImage(plant.imagePath),
-                            fit: BoxFit.cover,
-                          ),
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(16.0),
-                            topRight: Radius.circular(16.0),
-                          ),
-                        ),
-                      ),
-                      // Plant name
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          plant.name,
-                          style: const TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+              ),
+              // Implement the featured plant items using a GridView
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16.0,
+                  mainAxisSpacing: 16.0,
+                  childAspectRatio: 0.8,
                 ),
-              );
-            },
+                itemCount: featuredPlants.length,
+                itemBuilder: (context, index) {
+                  final plant = featuredPlants[index];
+                  return Card(
+                    elevation: 4.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        // Navigate to the plant details screen when a plant is tapped
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Details(plant: plant),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Featured plant image
+                          Container(
+                            height: 120.0,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(alignment: Alignment.center,
+                                image: AssetImage(plant.imagePath),
+                                fit: BoxFit.cover,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(16.0),
+                                topRight: Radius.circular(16.0),
+                              ),
+                            ),
+                          ),
+                          // Plant name
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              plant.name,
+                              style: const TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
     );
   }
 }

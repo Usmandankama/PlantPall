@@ -93,6 +93,8 @@ class _StartUpScreenState extends State<StartUpScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 80),
               child: ElevatedButton(
+                style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(primaryColor)),
                 onPressed: () {
                   // Navigate to the login screen when the "Login" button is pressed
                   Navigator.push(
@@ -104,7 +106,10 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 },
                 child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-                  child: Text("Login"),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: Text("Login"),
+                  ),
                 ),
               ),
             ),
@@ -126,9 +131,12 @@ class _StartUpScreenState extends State<StartUpScreen> {
               },
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 26, vertical: 12),
-                child: Text(
-                  "Sign Up",
-                  style: TextStyle(),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Text(
+                    "Sign Up",
+                    style: TextStyle(),
+                  ),
                 ),
               ),
             ),
