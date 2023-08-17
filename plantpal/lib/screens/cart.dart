@@ -4,13 +4,15 @@ import 'package:plantpal/constants.dart';
 import '../models/plants.dart';
 
 void main() {
-  runApp(EcommerceCartApp());
+  runApp(const EcommerceCartApp());
 }
 
 class EcommerceCartApp extends StatelessWidget {
+  const EcommerceCartApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'E-commerce Cart',
       home: EcommerceCartScreen(),
     );
@@ -18,6 +20,8 @@ class EcommerceCartApp extends StatelessWidget {
 }
 
 class EcommerceCartScreen extends StatefulWidget {
+  const EcommerceCartScreen({super.key});
+
   @override
   _EcommerceCartScreenState createState() => _EcommerceCartScreenState();
 }
@@ -39,10 +43,10 @@ class _EcommerceCartScreenState extends State<EcommerceCartScreen> {
 
   Widget _buildCartItem(Plant Plant, int index) {
     return ListTile(
-      leading: Icon(Icons.shopping_cart),
+      leading: const Icon(Icons.shopping_cart),
       title: Text(Plant.name),
       trailing: IconButton(
-        icon: Icon(Icons.remove_shopping_cart),
+        icon: const Icon(Icons.remove_shopping_cart),
         onPressed: () => _removeFromCart(index),
       ),
     );
@@ -52,7 +56,7 @@ class _EcommerceCartScreenState extends State<EcommerceCartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: primaryColor,
-        title: Text('E-commerce Cart',),
+        title: const Text('E-commerce Cart',),
       ),
       body: ListView.builder(
         itemCount: cartItems.length,

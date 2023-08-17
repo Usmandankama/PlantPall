@@ -6,7 +6,6 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 import 'SignupScreen.dart';
 import 'cart.dart';
-import 'login_page.dart';
 import 'products.dart';
 
 void main() {
@@ -27,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const HomePage(),
     const Products(),
     const SignupScreen(),
-    EcommerceCartApp()
+    const EcommerceCartApp()
   ];
 
   @override

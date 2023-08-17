@@ -5,7 +5,7 @@ import '../constants.dart'; // Import constants for styling
 
 class Details extends StatefulWidget {
   final Plant plant; // Input: The plant object to display details about
-  Details({super.key, required this.plant});
+  const Details({super.key, required this.plant});
 
   @override
   State<Details> createState() => _DetailsState();
