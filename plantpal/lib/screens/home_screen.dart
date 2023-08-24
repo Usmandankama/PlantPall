@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import '../constants.dart'; // Import constants for styling
 import '../widgets/featuredPlants.dart'; // Import the featured plants widget
@@ -6,7 +8,6 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 import 'SignupScreen.dart';
 import 'cart.dart';
-import 'login_page.dart';
 import 'products.dart';
 
 void main() {
@@ -27,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const HomePage(),
     const Products(),
     const SignupScreen(),
-    EcommerceCartApp()
+    const EcommerceCartApp()
   ];
 
   @override

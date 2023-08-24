@@ -4,8 +4,8 @@ import 'package:path/path.dart';
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
 
-  static final _dbName = 'plantpal.db';
-  static final _dbVersion = 1;
+  static const _dbName = 'plantpal.db';
+  static const _dbVersion = 1;
 
   DatabaseHelper._privateConstructor();
 
@@ -38,7 +38,7 @@ class DatabaseHelper {
     )
   ''');
 
-  await db.execute('''
+    await db.execute('''
     CREATE TABLE users (
       id INTEGER PRIMARY KEY,
       username TEXT,
@@ -48,7 +48,7 @@ class DatabaseHelper {
     )
   ''');
 
-   await db.execute('''
+    await db.execute('''
     CREATE TABLE plants (
       id INTEGER PRIMARY KEY,
       name TEXT,
@@ -59,7 +59,7 @@ class DatabaseHelper {
     )
   ''');
 
-  await db.execute('''
+    await db.execute('''
     CREATE TABLE billing (
       id INTEGER PRIMARY KEY,
       plantId INTEGER,
@@ -70,7 +70,5 @@ class DatabaseHelper {
       billAmount REAL
     )
   ''');
-
-
   }
 }

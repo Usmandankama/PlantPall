@@ -49,7 +49,7 @@ class _plantCategoriesState extends State<plantCategories> {
             itemBuilder: (context, index) {
               final category = plantCategories[index];
               return Card(
-                elevation: 4.0,
+                elevation: 2.5,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16.0),
                 ),
@@ -77,7 +77,7 @@ class _plantCategoriesState extends State<plantCategories> {
                       Text(
                         category.name,
                         style: const TextStyle(
-                          fontSize: 14.0,
+                          fontSize: 12.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

@@ -4,6 +4,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:plantpal/constants.dart';
 
 import '../models/plants.dart'; // Assuming this is the import for the Plant model
 import '../screens/details.dart'; // Import the plant details screen
@@ -19,10 +20,10 @@ class _featuredState extends State<featured> {
   // List of featured plants
   List<Plant> featuredPlants = [
     // Sample featured plants
-    Plant("Large", 20.62, name: 'Monstera Deliciosa', imagePath: './assets/images/1.png'),
-    Plant("Medium", 25.99, name: 'Lilly', imagePath: './assets/images/2.png'),
-    Plant("Small", 20.88, name: 'Hibiscus', imagePath: './assets/images/3.png'),
-    Plant("Small", 12.99, name: 'Whatever', imagePath: './assets/images/HermanoGato.png'),
+    Plant("Large", 20.62, name: 'Monstera Deliciosa', imagePath: './assets/images/1.png',"Succulent"),
+    Plant("Medium", 25.99, name: 'Lilly', imagePath: './assets/images/2.png',"Succulent"),
+    Plant("Small", 20.88, name: 'Hibiscus', imagePath: './assets/images/3.png',"Succulent"),
+    Plant("Small", 12.99, name: 'Whatever', imagePath: './assets/images/HermanoGato.png',"Succulent"),
   ];
 
   @override
@@ -55,9 +56,9 @@ class _featuredState extends State<featured> {
                 itemBuilder: (context, index) {
                   final plant = featuredPlants[index];
                   return Card(
-                    elevation: 4.0,
+                    elevation: 1.0,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16.0),
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: InkWell(
                       onTap: () {
@@ -88,12 +89,23 @@ class _featuredState extends State<featured> {
                           ),
                           // Plant name
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.only(left:8.0,top:5,bottom: 3),
                             child: Text(
                               plant.name,
                               style: const TextStyle(
-                                fontSize: 16.0,
+                                fontSize: 15.0,
                                 fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left:8.0),
+                            child: Text(
+                              plant.category,
+                              style: const TextStyle(
+                                fontSize: 12.0,
+                                color: primaryColor,
+                                fontWeight: FontWeight.bold
                               ),
                             ),
                           ),
