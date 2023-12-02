@@ -1,3 +1,4 @@
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:plantpal/constants.dart';
 
@@ -5,8 +6,8 @@ import 'package:plantpal/constants.dart';
 import 'screens/SignupScreen.dart';
 import 'screens/login_page.dart';
 
-void main() {
-  runApp(const MyApp());
+void main(){
+  runApp(const SignupScreen());
 }
 
 class MyApp extends StatelessWidget {
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // Specify the startup screen as the home screen of the app
-      home: const StartUpScreen(),
+      home: const SignupScreen(),
     );
   }
 }

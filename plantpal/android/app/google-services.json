@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1005740594120",
+    "project_id": "holz-adacf",
+    "storage_bucket": "holz-adacf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005740594120:android:ac7b8988e7f85d1a4f66fd",
+        "android_client_info": {
+          "package_name": "com.example.plantpal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005740594120-nl8f4csaj6bfqsomuvieq1qno6ltir07.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp8DBOhbkUzDtKzjJWOJp0zWFXsy4Lfac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005740594120-nl8f4csaj6bfqsomuvieq1qno6ltir07.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1005740594120-dehaqap82qh3kiidub8jfb7v824299fb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.plantpal"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005740594120:android:6239a90ae325c0364f66fd",
+        "android_client_info": {
+          "package_name": "com.example.tinyheaven"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005740594120-nl8f4csaj6bfqsomuvieq1qno6ltir07.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp8DBOhbkUzDtKzjJWOJp0zWFXsy4Lfac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005740594120-nl8f4csaj6bfqsomuvieq1qno6ltir07.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1005740594120-dehaqap82qh3kiidub8jfb7v824299fb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.plantpal"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
